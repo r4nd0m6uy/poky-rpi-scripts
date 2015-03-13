@@ -39,5 +39,6 @@ META_RASPBERRY_VERSION=${META_POKY_MAIN_VERSION}
 
 ################################################################################
 # Random Guy's Raspberry PI meta-layer
-META_RANDOM_GUY_RPI_URL=git@github.com:random85/meta-random-guy-rpi.git
+#META_RANDOM_GUY_RPI_URL=git@github.com:random85/meta-random-guy-rpi.git
+META_RANDOM_GUY_RPI_URL=https://github.com/random85/meta-random-guy-rpi.git
 META_RANDOM_GUY_RPI_VERSION=master
