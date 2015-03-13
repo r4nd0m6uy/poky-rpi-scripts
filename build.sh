@@ -23,6 +23,16 @@ PROJECT_BASE=$(pwd)
 POKY_BASE=${PROJECT_BASE}/poky
 
 ################################################################################
+# Shows this script usage
+usage()
+{
+  echo "${0} [ -h | -u | -b ]"
+  echo "-h    Shows this help"
+  echo "-u    Update meta-layers repositories"
+  echo "-b    Build an image"
+}
+
+################################################################################
 # Clone required repository and check out the right version
 update_meta_layers()
 {
@@ -56,6 +66,9 @@ update_meta_layers()
 # Build an image
 build_image()
 {
+  # Make sure update was called ...
+  [ ! -d ${POKY_BASE} ] && update_meta_layers
+
   cd ${POKY_BASE}
   [ ! -d build ] && export TEMPLATECONF="meta-random-guy-rpi/conf"
   source ./oe-init-build-env
@@ -64,5 +77,27 @@ build_image()
 
 ################################################################################
 # Main script
+while getopts "hub" FLAG; do
+  case $FLAG in
+    h)
+      usage
+      exit 0
+      ;;
+    u)
+      update_meta_layers
+      exit 0
+      ;;
+    b)
+      build_image
+      exit 0
+      ;;
+    \?)
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+# Default behavior, does everything ...
 update_meta_layers
 build_image
