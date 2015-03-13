@@ -1,0 +1,43 @@
+#!/bin/sh
+# Helper script to build an image for the raspberry PI
+# Copyright (C) 2014 Guy Morand
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+################################################################################
+# Common version for meta layers
+META_POKY_MAIN_VERSION=master
+#META_POKY_MAIN_VERSION=dizzy
+#META_POKY_MAIN_VERSION=dora
+
+################################################################################
+# Poky meta-layers
+META_POKY_URL=git://git.yoctoproject.org/poky.git
+META_POKY_VERSION=${META_POKY_MAIN_VERSION}
+
+################################################################################
+# Openembedded meta-layer
+META_OE_URL=git://git.openembedded.org/meta-openembedded
+META_OE_VERSION=${META_POKY_MAIN_VERSION}
+
+################################################################################
+# Rapsberry PI meta-layer
+META_RASPBERRY_URL=git://git.yoctoproject.org/meta-raspberrypi
+META_RASPBERRY_VERSION=${META_POKY_MAIN_VERSION}
+
+################################################################################
+# Random Guy's Raspberry PI meta-layer
+META_RANDOM_GUY_RPI_URL=git@github.com:random85/meta-random-guy-rpi.git
+META_RANDOM_GUY_RPI_VERSION=master
