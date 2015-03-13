@@ -1,6 +1,6 @@
 #!/bin/sh
 # Helper script to build an image for the raspberry PI
-# Copyright (C) 2014 Guy Morand
+# Copyright (C) 2015 Guy Morand
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
