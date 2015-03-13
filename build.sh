@@ -108,8 +108,9 @@ build_image()
 
   # Start the build
   cd ${POKY_BASE}
+
   source ./oe-init-build-env > /dev/null
-  bitbake rpi-basic-image
+  bitbake rpi-random-guy-image
 }
 
 ################################################################################
