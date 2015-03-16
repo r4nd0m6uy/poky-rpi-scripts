@@ -24,17 +24,20 @@ META_POKY_MAIN_VERSION=master
 
 ################################################################################
 # Poky meta-layers
-META_POKY_URL=git://git.yoctoproject.org/poky.git
+#META_POKY_URL=git://git.yoctoproject.org/poky.git
+META_POKY_URL=http://git.yoctoproject.org/git/poky
 META_POKY_VERSION=${META_POKY_MAIN_VERSION}
 
 ################################################################################
 # Openembedded meta-layer
-META_OE_URL=git://git.openembedded.org/meta-openembedded
+#META_OE_URL=git://git.openembedded.org/meta-openembedded
+META_OE_URL=https://github.com/openembedded/meta-openembedded.git
 META_OE_VERSION=${META_POKY_MAIN_VERSION}
 
 ################################################################################
 # Rapsberry PI meta-layer
-META_RASPBERRY_URL=git://git.yoctoproject.org/meta-raspberrypi
+#META_RASPBERRY_URL=git://git.yoctoproject.org/meta-raspberrypi
+META_RASPBERRY_URL=http://git.yoctoproject.org/git/meta-raspberrypi
 META_RASPBERRY_VERSION=${META_POKY_MAIN_VERSION}
 
 ################################################################################
