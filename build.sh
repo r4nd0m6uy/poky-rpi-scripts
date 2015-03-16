@@ -1,5 +1,7 @@
 #!/bin/bash
+#
 # Helper script to build an image for the raspberry PI
+#
 # Copyright (C) 2015 Guy Morand
 #
 # This program is free software; you can redistribute it and/or
@@ -21,9 +23,9 @@ set -e
 
 ################################################################################
 # Variables
-. ./meta_layers
 PROJECT_BASE=$(pwd)
 POKY_BASE=${PROJECT_BASE}/poky
+META_LAYERS_FILE=meta_layers
 
 ################################################################################
 # Shows this script usage
@@ -43,28 +45,25 @@ update_meta_layers()
   echo "Updating meta-layers ..."
   cd ${PROJECT_BASE}
 
-  # Poky meta-layer
-  [ ! -d poky ] && git clone ${META_POKY_URL}
-  cd ${POKY_BASE}
-  git checkout ${META_POKY_VERSION}
+  for layer in $(cat ${META_LAYERS_FILE} | grep -v ^#)
+  do
+    cd ${PROJECT_BASE}
+    META_PATH=$(echo ${layer} | cut -d\; -f1)
+    META_URL=$(echo ${layer} | cut -d\; -f2)
+    META_REV=$(echo ${layer} | cut -d\; -f3)
 
-  # openembedded meta-layer
-  cd ${POKY_BASE}
-  [ ! -d meta-openembedded ] && git clone ${META_OE_URL}
-  cd meta-openembedded
-  git checkout ${META_OE_VERSION}
+    # Make sure we have correct entry
+    if [ "${META_PATH}" = "" -o "${META_URL}" = "" -o ${META_REV} = "" ]
+    then
+      echo "Malformed meta-layer line:"
+      echo ${layer}
+      exit -1
+    fi
 
-  # Raspberry pi meta-layer
-  cd ${POKY_BASE}
-  [ ! -d meta-raspberrypi ] && git clone ${META_RASPBERRY_URL}
-  cd meta-raspberrypi
-  git checkout ${META_RASPBERRY_VERSION}
-
-  # Random Guy's Raspberry PI meta-layer
-  cd ${POKY_BASE}
-  [ ! -d meta-random-guy-rpi ] && git clone ${META_RANDOM_GUY_RPI_URL}
-  cd meta-random-guy-rpi
-  git checkout ${META_RANDOM_GUY_RPI_VERSION}
+    [ ! -d ${META_PATH} ] && git clone ${META_URL} ${META_PATH}
+    cd ${META_PATH}
+    git checkout ${META_REV}
+  done
 
   echo "meta-layers up to date!"
 }
