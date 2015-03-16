@@ -21,7 +21,7 @@ set -e
 
 ################################################################################
 # Variables
-source ./meta_layers
+. ./meta_layers
 PROJECT_BASE=$(pwd)
 POKY_BASE=${PROJECT_BASE}/poky
 
@@ -96,7 +96,7 @@ init_poky_env()
 
   # Initialize the environment
   export TEMPLATECONF="meta-random-guy-rpi/conf"
-  source ./oe-init-build-env > /dev/null
+  . ./oe-init-build-env > /dev/null
 
   echo "Your poky environment is ready!"
 }
@@ -112,7 +112,7 @@ build_image()
   # Start the build
   cd ${POKY_BASE}
 
-  source ./oe-init-build-env > /dev/null
+  . ./oe-init-build-env > /dev/null
   bitbake rpi-random-guy-image
 }
 
