@@ -62,7 +62,9 @@ update_meta_layers()
 
     [ ! -d ${META_PATH} ] && git clone ${META_URL} ${META_PATH}
     cd ${META_PATH}
+    git fetch origin
     git checkout ${META_REV}
+    git pull origin ${META_REV}
   done
 
   echo "meta-layers up to date!"
