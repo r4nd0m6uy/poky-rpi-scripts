@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Helper script to build an image for the raspberry PI
 # Copyright (C) 2015 Guy Morand
 #
