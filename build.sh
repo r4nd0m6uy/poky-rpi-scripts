@@ -31,11 +31,12 @@ META_LAYERS_FILE=meta_layers
 # Shows this script usage
 usage()
 {
-  echo "${0} [ -h | -u | -b ]"
+  echo "${0} [ -h | -u | -b | -s ]"
   echo "-h    Shows this help"
   echo "-u    Update meta-layers repositories"
   echo "-i    Init poky environment"
   echo "-b    Build an image"
+  echo "-s    Build an SDK"
 }
 
 ################################################################################
@@ -118,8 +119,23 @@ build_image()
 }
 
 ################################################################################
+# Build an image
+build_sdk()
+{
+  # Make sure we have an environement ready
+  cd ${PROJECT_BASE}
+  [ ! -d ${POKY_BASE}/build/conf ] && init_poky_env
+
+  # Start the build
+  cd ${POKY_BASE}
+
+  . ./oe-init-build-env > /dev/null
+  bitbake -c populate_sdk rpi-random-guy-image
+}
+
+################################################################################
 # Main script
-while getopts "huib" FLAG; do
+while getopts "huibs" FLAG; do
   case $FLAG in
     h)
       usage
@@ -135,6 +151,10 @@ while getopts "huib" FLAG; do
       ;;
     b)
       build_image
+      exit 0
+      ;;
+    s)
+      build_sdk
       exit 0
       ;;
     \?)
