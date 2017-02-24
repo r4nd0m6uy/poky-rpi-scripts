@@ -34,4 +34,4 @@ poky/meta-raspberrypi;http://git.yoctoproject.org/git/meta-raspberrypi;master
 
 # Random Guy's Raspberry PI meta-layer
 #poky/meta-random-guy-rpi;git@github.com:random85/meta-random-guy-rpi.git;master
-poky/meta-random-guy-rpi;https://github.com/random85/meta-random-guy-rpi.git;master
+poky/meta-random-guy-rpi;https://github.com/r4nd0m6uy/meta-random-guy-rpi;master
